@@ -9,6 +9,7 @@ import numpy as np
 
 # The Purpose of this Class is to separate out any Database logic
 class SQLHelper():
+    
     #################################################
     # Database Setup
     #################################################
@@ -40,150 +41,64 @@ class SQLHelper():
     # Database Queries
     #################################################
 
-	#function to return date and precipitation values previous 12 months
-	def query_precipitation(self, nationality):
+	#function to return nationality
+    def query_nationality(self, nationality):
             
         Results = self.Base.classes.results        
-		Drivers = self.Base.classes.drivers
+        Drivers = self.Base.classes.drivers
 
 		# Create our session (link) from Python to the DB
-		session = Session(self.engine)
+        session = Session(self.engine)
 
-		#12 months from most recent data point
-		query_date = datetime.date(2017, 8, 23) - datetime.timedelta(days=365)
+		# # #nationality
+        # nationality = f"{nationality}"
 
-		#query
-		results = session.query(Measurement.date, Measurement.prcp).\
-			filter(Measurement.date >= query_date).\
-			order_by(Measurement.date.asc()).all()
-			
-		# close session
-		session.close()
+		#query		
+        driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position)).\
+            filter(Drivers.driverId == Results.driverId).\
+            filter(Results.position == 1).\
+            filter(Drivers.nationality == f"{nationality}").\
+            group_by(Drivers.forename, Drivers.surname).\
+            order_by(func.count(Results.position).asc()).all()
+		
+        # close session
+        session.close()
 
 		#save query to dataframe
-		df = pd.DataFrame(results, columns=["Date", "Precipitation"])
+        df = pd.DataFrame(driver_query, columns=["forename", "surname", "wins"])	
 
-		data = df.to_dict(orient="records")
-		return(data)
-
-
-    # USING RAW SQL
-    def get_bar(self, min_attempts, region):
-
-        # switch on user_region
-        if region == 'All':
-            where_clause = "and 1=1"
-        else:
-            where_clause = f"and region = '{region}'"
-
-        # build the query
-        query = f"""
-            SELECT
-                name,
-                full_name,
-                region,
-                launch_attempts,
-                launch_successes
-            FROM
-                launchpads
-            WHERE
-                launch_attempts >= {min_attempts}
-                {where_clause}
-            ORDER BY
-                launch_attempts DESC;
-        """
-
-        df = pd.read_sql(text(query), con = self.engine)
         data = df.to_dict(orient="records")
         return(data)
 
-    def get_pie(self, min_attempts, region):
 
-        # switch on user_region
-        if region == 'All':
-            where_clause = "and 1=1"
-        else:
-            where_clause = f"and region = '{region}'"
+    # # USING RAW SQL
+    # def get_bar(self, min_attempts, region):
 
-        # build the query
-        query = f"""
-            SELECT
-                name,
-                region,
-                launch_attempts
-            FROM
-                launchpads
-            WHERE
-                launch_attempts >= {min_attempts}
-                {where_clause}
-            ORDER BY
-                launch_attempts DESC;
-        """
+    #     # switch on user_region
+    #     if region == 'All':
+    #         where_clause = "and 1=1"
+    #     else:
+    #         where_clause = f"and region = '{region}'"
 
-        df = pd.read_sql(text(query), con = self.engine)
-        data = df.to_dict(orient="records")
-        return(data)
+    #     # build the query
+    #     query = f"""
+    #         SELECT
+    #             name,
+    #             full_name,
+    #             region,
+    #             launch_attempts,
+    #             launch_successes
+    #         FROM
+    #             launchpads
+    #         WHERE
+    #             launch_attempts >= {min_attempts}
+    #             {where_clause}
+    #         ORDER BY
+    #             launch_attempts DESC;
+    #     """
 
-    def get_table(self, min_attempts, region):
+    #     df = pd.read_sql(text(query), con = self.engine)
+    #     data = df.to_dict(orient="records")
+    #     return(data)
 
-        # switch on user_region
-        if region == 'All':
-            where_clause = "and 1=1"
-        else:
-            where_clause = f"and region = '{region}'"
-
-        # build the query
-        query = f"""
-            SELECT
-                name,
-                full_name,
-                region,
-                latitude,
-                longitude,
-                launch_attempts,
-                launch_successes,
-                launch_attempts - launch_successes as launch_failures
-            FROM
-                launchpads
-            WHERE
-                launch_attempts >= {min_attempts}
-                {where_clause}
-            ORDER BY
-                launch_attempts DESC;
-        """
-
-        df = pd.read_sql(text(query), con = self.engine)
-        data = df.to_dict(orient="records")
-        return(data)
-
-    def get_map(self, min_attempts, region):
-
-        # switch on user_region
-        if region == 'All':
-            where_clause = "and 1=1"
-        else:
-            where_clause = f"and region = '{region}'"
-
-        # build the query
-        query = f"""
-            SELECT
-                name,
-                full_name,
-                region,
-                latitude,
-                longitude,
-                launch_attempts,
-                launch_successes,
-                launch_attempts - launch_successes as launch_failures
-            FROM
-                launchpads
-            WHERE
-                launch_attempts >= {min_attempts}
-                {where_clause}
-            ORDER BY
-                launch_attempts DESC;
-        """
-
-        df = pd.read_sql(text(query), con = self.engine)
-        data = df.to_dict(orient="records")
-        return(data)
+    
