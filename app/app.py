@@ -43,7 +43,11 @@ sql = SQLHelper()
 # def index():
 #     return render_template("work_cited.html")
 
-SQL Queries
+# SQL Queries
+@app.route("/api/v1.0/get_nationality/<nationality>")
+def get_nationality(nationality):
+    
+
 @app.route("/api/v1.0/get_dashboard/<min_attempts>/<region>")
 def get_dashboard(min_attempts, region):
     min_attempts = int(min_attempts) # cast to int

@@ -18,7 +18,7 @@ class SQLHelper():
         self.engine = create_engine("sqlite:///f1.sqlite")
         self.Base = None
 
-        automap Base classes
+        # automap Base classes
         self.init_base()
 
 
@@ -28,9 +28,44 @@ class SQLHelper():
         # reflect the tables
         self.Base.prepare(autoload_with=self.engine)
 
+
+        Circuits = self.Base.classes.circuits
+        Constructors = self.Base.classes.constructors
+        Drivers = self.Base.classes.drivers
+        Results = self.Base.classes.results
+        Races = self.Base.classes.races
+
+
     #################################################
     # Database Queries
     #################################################
+
+	#function to return date and precipitation values previous 12 months
+	def query_precipitation(self, nationality):
+            
+        Results = self.Base.classes.results        
+		Drivers = self.Base.classes.drivers
+
+		# Create our session (link) from Python to the DB
+		session = Session(self.engine)
+
+		#12 months from most recent data point
+		query_date = datetime.date(2017, 8, 23) - datetime.timedelta(days=365)
+
+		#query
+		results = session.query(Measurement.date, Measurement.prcp).\
+			filter(Measurement.date >= query_date).\
+			order_by(Measurement.date.asc()).all()
+			
+		# close session
+		session.close()
+
+		#save query to dataframe
+		df = pd.DataFrame(results, columns=["Date", "Precipitation"])
+
+		data = df.to_dict(orient="records")
+		return(data)
+
 
     # USING RAW SQL
     def get_bar(self, min_attempts, region):
