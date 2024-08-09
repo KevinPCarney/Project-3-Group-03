@@ -21,25 +21,28 @@ def index():
 
 # HTML ROUTES
 @app.route("/dashboard")
-def index():
+def dashboard():
     return render_template("dashboard.html")
 
 # HTML ROUTES
 @app.route("/map")
-def index():
+def map():
     return render_template("map.html")
 
 
 # SQL Queries BUILD OUT DASHBOARD
+@app.route("/api/v1.0/get_dropdown")
+def get_dropdown():    
+    data = sql.dropdown_query()
+
+    return(jsonify(data))
+
 @app.route("/api/v1.0/get_dashboard/<nationality>")
 def get_dashboard(nationality):
-
-    dropdown_data = sql.dropdown_query()
     bar_data = sql.query_nationality(nationality)
     bubble_data = sql.bubble_chart(nationality)
 
     data = {
-        "dropdown_data": dropdown_data,
         "bar_data": bar_data,
         "bubble_data": bubble_data
     }

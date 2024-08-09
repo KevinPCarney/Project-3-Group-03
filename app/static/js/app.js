@@ -3,10 +3,10 @@ function init() {
   // get user input
   let nationality = d3.select("#selNationality").property("value");
   // might add filters 
-    request.then((data) => {
+    d3.json("/api/v1.0/get_dropdown").then((data) => {
   
       // Get the names field
-      let names = data.names;
+      let names = data.map(x => x.Nationality);
   
       // Select the dropdown with id of `#selDataset`
       let dropdown = d3.select("#selNationality");

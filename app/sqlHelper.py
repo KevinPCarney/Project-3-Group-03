@@ -71,15 +71,20 @@ class SQLHelper():
 
 		# nationality
         # nationality = f"{nationality}"
-
-		#query		
-        driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position)).\
+        if nationality != 'All':
+            driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position)).\
             filter(Drivers.driverId == Results.driverId).\
             filter(Results.position == 1).\
             filter(Drivers.nationality == f"{nationality}").\
             group_by(Drivers.forename, Drivers.surname).\
             order_by(func.count(Results.position).asc()).all()
-		
+        else:
+            driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position)).\
+            filter(Drivers.driverId == Results.driverId).\
+            filter(Results.position == 1).\
+            group_by(Drivers.forename, Drivers.surname).\
+            order_by(func.count(Results.position).asc()).all()
+
         # close session
         session.close()
 
@@ -98,11 +103,17 @@ class SQLHelper():
 		# Create our session (link) from Python to the DB
         session = Session(self.engine)
 
-        bubble_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), func.avg(Results.position)).\
-        filter(Drivers.driverId == Results.driverId).\
-        filter(Drivers.nationality == f"{nationality}").\
-        group_by(Drivers.forename, Drivers.surname).\
-        order_by(func.count(Results.position).desc()).all()
+        if nationality != 'All':
+            bubble_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), func.avg(Results.position)).\
+            filter(Drivers.driverId == Results.driverId).\
+            filter(Drivers.nationality == f"{nationality}").\
+            group_by(Drivers.forename, Drivers.surname).\
+            order_by(func.count(Results.position).desc()).all()
+        else:
+            bubble_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), func.avg(Results.position)).\
+            filter(Drivers.driverId == Results.driverId).\
+            group_by(Drivers.forename, Drivers.surname).\
+            order_by(func.count(Results.position).desc()).all() 
 
         # close session
         session.close()
