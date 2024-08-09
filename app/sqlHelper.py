@@ -41,7 +41,26 @@ class SQLHelper():
     # Database Queries
     #################################################
 
-	#function to return nationality
+
+    def dropdown_query(self):
+                 
+        Drivers = self.Base.classes.drivers
+
+		# Create our session (link) from Python to the DB
+        session = Session(self.engine)
+
+        dropdown_query = session.query(Drivers.nationality.distinct()).order_by(Drivers.nationality.asc()).all()
+
+        # close session
+        session.close()
+        
+        df = pd.DataFrame(dropdown_query, columns=["Nationality"])
+
+        data = df.to_dict(orient="records")
+        return(data)
+
+
+	#Drivers Nationality
     def query_nationality(self, nationality):
             
         Results = self.Base.classes.results        
@@ -50,7 +69,7 @@ class SQLHelper():
 		# Create our session (link) from Python to the DB
         session = Session(self.engine)
 
-		# # #nationality
+		# nationality
         # nationality = f"{nationality}"
 
 		#query		
@@ -68,6 +87,49 @@ class SQLHelper():
         df = pd.DataFrame(driver_query, columns=["forename", "surname", "wins"])	
 
         data = df.to_dict(orient="records")
+        return(data)
+    
+    #Drivers Wins
+    def bubble_chart(self, nationality):
+
+        Results = self.Base.classes.results        
+        Drivers = self.Base.classes.drivers
+
+		# Create our session (link) from Python to the DB
+        session = Session(self.engine)
+
+        bubble_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), func.avg(Results.position)).\
+        filter(Drivers.driverId == Results.driverId).\
+        filter(Drivers.nationality == f"{nationality}").\
+        group_by(Drivers.forename, Drivers.surname).\
+        order_by(func.count(Results.position).desc()).all()
+
+        # close session
+        session.close()
+
+        df = pd.DataFrame(bubble_query, columns=["forename", "surname", "Number of Races", "Average Finish"])
+
+        data = df.to_dict(orient="records")
+        return(data) 
+
+    #MAP
+    def query_map(self):
+        
+        Circuits = self.Base.classes.circuits
+
+        # Create our session (link) from Python to the DB
+        session = Session(self.engine)
+
+        #query		
+        map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).all()
+
+        # close session
+        session.close()
+
+        #save query to dataframe
+        df3 = pd.DataFrame(map_query, columns=["Circuit Name", "City", "Country", "Latitude", "Longitude"])
+
+        data = df3.to_dict(orient="records")
         return(data)
 
 

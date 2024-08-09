@@ -14,21 +14,41 @@ sql = SQLHelper()
 #################################################
 
 
-# # HTML ROUTES
-# @app.route("/")
-# def index():
-#     return render_template("home.html")
+# HTML ROUTES
+@app.route("/")
+def index():
+    return render_template("home.html")
 
-# # HTML ROUTES
-# @app.route("/dashboard")
-# def index():
-#     return render_template("dashboard.html")
+# HTML ROUTES
+@app.route("/dashboard")
+def index():
+    return render_template("dashboard.html")
+
+# HTML ROUTES
+@app.route("/map")
+def index():
+    return render_template("map.html")
 
 
-# SQL Queries
-@app.route("/api/v1.0/<nationality>")
-def get_nationality(nationality):
-    data = sql.query_nationality(nationality)
+# SQL Queries BUILD OUT DASHBOARD
+@app.route("/api/v1.0/get_dashboard/<nationality>")
+def get_dashboard(nationality):
+
+    dropdown_data = sql.dropdown_query()
+    bar_data = sql.query_nationality(nationality)
+    bubble_data = sql.bubble_chart(nationality)
+
+    data = {
+        "dropdown_data": dropdown_data,
+        "bar_data": bar_data,
+        "bubble_data": bubble_data
+    }
+
+    return(jsonify(data))
+
+@app.route("/api/v1.0/get_map")
+def get_map():
+    data = sql.query_map()
     return(jsonify(data))
     
 #BOOTH CODE FOR SPACE X DASHBOARD
