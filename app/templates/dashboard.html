@@ -22,14 +22,13 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
-            <!-- Having issue getting the logo image loading -->
             <a class="navbar-brand" href="/"><img src="../images/logo.jpg" width="45", height="30"></a>
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                <a class="nav-link active" href="/">Home</a>
+                <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/dashboard">Dashboard</a>
+                <a class="nav-link active" href="/dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="/sunburst">Sunburst</a>
@@ -48,16 +47,42 @@
     <br/>
 
     <!-- Dashboard -->
-     <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center">
-                <h1>Formula 1 Reference Guide</h1>
-            </div>
+          <div class="col-md-12 p-5 text-center">
+            <h1>Formula 1 Driver Performance by Nationality</h1>
+            <p>Use the interactive charts below to explore the dataset</p>
+          </div>
         </div>
-     </div>
-
-     <br/>
-     <br/>
+        <br>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+              <h6 class="m-1">Nationality:</h6>
+              <select class="form-select" id="selNationality" onchange="optionChanged(this.value)"></select>
+            </div>
+            <br>
+            <div class="card border-primary mb-3">
+              <div class="card-header mt-1">
+                <h4 class="card-title">Driver Overview</h4>
+              </div>
+              <div id="sample-metadata" class="card-text ms-3 mb-1 mt-1"></div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div id="bar"></div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <div id="bubble"></div>
+          </div>
+        </div>
+      </div>
+    
+      
+      <script src="./static/js/app.js"></script>
 </body>
 
 </html>
