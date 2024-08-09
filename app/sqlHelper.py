@@ -72,14 +72,14 @@ class SQLHelper():
 		# nationality
         # nationality = f"{nationality}"
         if nationality != 'All':
-            driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position)).\
+            driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), Drivers.nationality).\
             filter(Drivers.driverId == Results.driverId).\
             filter(Results.position == 1).\
             filter(Drivers.nationality == f"{nationality}").\
             group_by(Drivers.forename, Drivers.surname).\
             order_by(func.count(Results.position).asc()).all()
         else:
-            driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position)).\
+            driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), Drivers.nationality).\
             filter(Drivers.driverId == Results.driverId).\
             filter(Results.position == 1).\
             group_by(Drivers.forename, Drivers.surname).\
@@ -89,7 +89,7 @@ class SQLHelper():
         session.close()
 
 		#save query to dataframe
-        df = pd.DataFrame(driver_query, columns=["forename", "surname", "wins"])	
+        df = pd.DataFrame(driver_query, columns=["forename", "surname", "wins", "Nationality"])	
 
         data = df.to_dict(orient="records")
         return(data)
@@ -104,13 +104,13 @@ class SQLHelper():
         session = Session(self.engine)
 
         if nationality != 'All':
-            bubble_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), func.avg(Results.position)).\
+            bubble_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), func.avg(Results.position), Drivers.nationality).\
             filter(Drivers.driverId == Results.driverId).\
             filter(Drivers.nationality == f"{nationality}").\
             group_by(Drivers.forename, Drivers.surname).\
             order_by(func.count(Results.position).desc()).all()
         else:
-            bubble_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), func.avg(Results.position)).\
+            bubble_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), func.avg(Results.position), Drivers.nationality).\
             filter(Drivers.driverId == Results.driverId).\
             group_by(Drivers.forename, Drivers.surname).\
             order_by(func.count(Results.position).desc()).all() 
@@ -118,7 +118,7 @@ class SQLHelper():
         # close session
         session.close()
 
-        df = pd.DataFrame(bubble_query, columns=["forename", "surname", "Number of Races", "Average Finish"])
+        df = pd.DataFrame(bubble_query, columns=["forename", "surname", "Number of Races", "Average Finish", "Nationality"])
 
         data = df.to_dict(orient="records")
         return(data) 
