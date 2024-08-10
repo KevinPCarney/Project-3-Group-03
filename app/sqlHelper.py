@@ -54,7 +54,7 @@ class SQLHelper():
         # close session
         session.close()
         
-        df = pd.DataFrame(dropdown_query, columns=["Nationality"])
+        df = pd.DataFrame(dropdown_query, columns=["nationality"])
 
         data = df.to_dict(orient="records")
         return(data)

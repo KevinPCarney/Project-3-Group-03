@@ -29,6 +29,16 @@ def dashboard():
 def map():
     return render_template("map.html")
 
+# HTML ROUTES
+@app.route("/about_us")
+def about_us():
+    return render_template("about_us.html")
+
+# HTML ROUTES
+@app.route("/sources")
+def sources():
+    return render_template("sources.html")
+
 
 # SQL Queries BUILD OUT DASHBOARD
 @app.route("/api/v1.0/get_dropdown")
