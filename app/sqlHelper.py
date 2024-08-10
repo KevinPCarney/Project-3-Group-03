@@ -89,7 +89,7 @@ class SQLHelper():
         session.close()
 
 		#save query to dataframe
-        df = pd.DataFrame(driver_query, columns=["forename", "surname", "wins", "Nationality"])	
+        df = pd.DataFrame(driver_query, columns=["first_name", "last_name", "wins", "nationality"])	
 
         data = df.to_dict(orient="records")
         return(data)
@@ -118,7 +118,7 @@ class SQLHelper():
         # close session
         session.close()
 
-        df = pd.DataFrame(bubble_query, columns=["forename", "surname", "Number of Races", "Average Finish", "Nationality"])
+        df = pd.DataFrame(bubble_query, columns=["first_name", "last_name", "number_races", "avg_finish", "nationality"])
 
         data = df.to_dict(orient="records")
         return(data) 

@@ -4,24 +4,27 @@ function init() {
   let nationality = d3.select("#selNationality").property("value");
   // might add filters 
     d3.json("/api/v1.0/get_dropdown").then((data) => {
+
+      //print received data
+      console.log(data);
   
-      // Get the names field
-      let names = data.map(x => x.Nationality);
+      // Get the nationality field
+      let names = data.map(x => x.nationality);
   
-      // Select the dropdown with id of `#selDataset`
+      // Select the dropdown with id of `#selNationality`
       let dropdown = d3.select("#selNationality");
   
-      // Use the list of sample names to populate the select options
+      // Use the list of nationalities to populate the select options
       for (let i=0; i < names.length; i++){
   
-        // Get each individual name (for clarity)
+        // Get each individual nationality (for clarity)
         let name = names[i];
   
         // append the option list to dynamically build the dropdown list
         dropdown.append("option").text(name);
       }
   
-      // Get the first sample from the list
+      // Get the first nationality from the list
       let firstSample = names[0];
   
       // Build charts and metadata panel with the first sample
@@ -29,31 +32,40 @@ function init() {
       buildMetadata(firstSample);
     });
 }
+
+
+
 // function to build both charts
 function buildCharts(sample) {
   d3.json("/api/v1.0/get_dashboard/<nationality>").then((data) => {
 
+    //THIS FIELD HELP
     // Get the samples field
-    let nationality_data = data.Nationality; 
+    let nationality_data = data.nationality; 
 
     // Filter the samples for the object with the desired sample number
-    let sample_info = sample_data.filter(x => x.id === sample)[0];
+    //THIS FIELD
+    let driver_info = nationality_data.filter(x => x.id === sample)[0];
     console.log(sample_info);
 
+
+
+
+
     // Get the otu_ids, otu_labels, and sample_values
-    let otu_ids = sample_info.otu_ids;
-    let otu_labels = sample_info.otu_labels;
-    let sample_values = sample_info.sample_values;
+    let drivers_name = driver_info.last_name;
+    let avg_finish = driver_info.avg_finish;
+    let number_races = driver_info.number_races;
 
     // Build a Bubble Chart
     let bubble_trace = {
-      x: otu_ids,
-      y: sample_values,
+      x: drivers_name,
+      y: avg_finish,
       text: otu_labels,
       mode: 'markers',
       marker: {
-        color: otu_ids,
-        size: sample_values,
+        color: drivers_name,
+        size: number_races,
         colorscale: 'YlOrRd',
         type: 'heatmap'
       }
@@ -66,8 +78,8 @@ function buildCharts(sample) {
     // Bubble Chart Layout
     let bubble_layout = {
       //background color, code from chat gbt
-      paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-      plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+      // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+      // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
       title: {
         text: 'Bacteria Cultures Per Sample',
         font: {
@@ -115,8 +127,8 @@ function buildCharts(sample) {
     // Apply a title to the layout
     let bar_layout = {
       //background color, code from chat gbt
-      paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-      plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+      // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+      // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
       font: {
           color: 'white'
         },
