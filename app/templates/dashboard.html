@@ -22,7 +22,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="../images/logo.jpg" width="45", height="30"></a>
+            <a class="navbar-brand" href="/"><img src="../images/logo.jpg" onerror="this.onerror=null; this.remove()"  width="45", height="30"></a>
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
@@ -69,7 +69,7 @@
             </div>
             <div class="card text-white bg-primary mb-3">
               <h6 class="m-1">Team:</h6>
-              <select id="team_filter">
+              <select class="form-select" id="team_filter" onchange="optionChanged(this.value)">
                 <option selected>All</option>
                 <option>Adams</option>
                 <option>AFM</option>
@@ -282,7 +282,9 @@
                 <option>Wetteroth</option>
                 <option>Williams</option>
               </select>
-              <button id="filter">Select</button>
+              <!-- Commenting out button (would rather it just changes when the option is changed w/o the button)-- Marta -->
+              <!-- Can add the filter button back if we want -->
+              <!-- <button id="filter">Select</button> -->
             </div>
             <div class="card border-primary mb-3">
               <div class="card-header mt-1">
