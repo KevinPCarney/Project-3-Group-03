@@ -58,22 +58,26 @@ function buildBubble(newData) {
 
 // function to create a horizontal bar chart
 function buildBar(data) {
+
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
-    let y_bar_val = otu_ids.map(x => `OTU: ${x}`);
+    let winner_info = data.map(x => x.nationality);
     //console log
-    console.log(y_bar_val);
+    console.log(winner_info);
 
     // Build a Bar Chart
     // slice and reverse the input 
+    // Horizontal bar chart where the y is Drivers Name and x is the number of 1st place finishes
+    let driversName = `${winner_info.first_name} ${winner_info.last_name}`
+
     let bar_trace = {
-      x: number_races.slice(0,10).reverse(),
-      y: drivers_name.slice(0,10).reverse(),
+      x: winNumber.slice(0,10).reverse(),
+      y: driversName.slice(0,10).reverse(),
       type: 'bar',
       marker: {
         colorscale: 'YlOrRd',
         color: sample_values.slice(0,10).reverse()
       },
-      text: drivers_name.slice(0,10).reverse(),
+      text: driversName.slice(0,10).reverse(),
       orientation: 'h'
     }
 
@@ -150,8 +154,8 @@ function optionChanged(newNationality) {
   d3.json(url_dash).then(function(data){
 
     // Build charts and metadata panel each time a new sample is selected
-    // buildBar(data.bar_data);
-    buildBubble(data.bubble_data)
+    buildBar(data.bar_data);
+    buildBubble(data.bubble_data);
     buildMetadata(newNationality);
   })
 }
