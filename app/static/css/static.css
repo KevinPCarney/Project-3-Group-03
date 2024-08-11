@@ -1,17 +1,27 @@
-/* Chat GBT styling for Source html to create hover link 
+/* Chat GBT styling */
 
+
+/*SOURCES */
 /* Header styling */
 .header {
-    text-align: left; /* Align text to the left */
+    text-align: center; 
     padding: 20px;
+}
+/* Parent container styling */
+.parent-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 50vh; 
 }
 
 /* Link container styling */
 .link-container {
-    width: 100%;
+    width: 80%;
     padding: 10px 20px; /* Add padding to align with the header */
     background-color: #9D948B;
-    text-align: left; /* Align text to the left */
+    text-align: center; 
+    border-radius: 5px; /* Rounded corners */
 }
 
 /* Individual link styling */
@@ -23,11 +33,34 @@
     padding: 10px;
     background-color: white;
     border: 1px solid #9D948B;
-    margin: 5px 0; /* Adjust margins for left alignment */
-    width: auto; /* Allow links to take up only the necessary width */
+    margin: 5px 0; 
+    width: auto;
+    border-radius: 5px; /* Rounded corners */
 }
 
 /* Hover effect for links */
 .link-container a:hover {
     background-color: #e0e0e0;
+}
+
+
+/* ABOUT US 
+/* About Us block styling */
+.about-block {
+    text-align: left; /* Align content to the left */
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: white; /* Light background color for each block */
+    border: 1px solid #ddd; /* Border around each block */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.about-block img {
+    width: 100%; /* Make the image take up the full width of its container */
+    height: auto;
+    margin-bottom: 10px; /* Space between image and bio */
+}
+
+.about-block p {
+    margin: 0;
 }

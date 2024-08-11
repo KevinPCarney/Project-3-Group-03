@@ -53,7 +53,7 @@
     <!-- Dashboard -->
     <div class="container">
         <div class="row">
-          <div class="col-md-12 p-5 text-center">
+          <div class="col-md-12 text-center">
             <h1>Formula 1 Driver Performance by Nationality</h1>
             <p>Use the interactive charts below to explore the dataset</p>
           </div>
@@ -67,14 +67,232 @@
                 <option selected>All</option>
               </select>
             </div>
-            <br>
+            <div class="card text-white bg-primary mb-3">
+              <h6 class="m-1">Team:</h6>
+              <select id="team_filter">
+                <option selected>All</option>
+                <option>Adams</option>
+                <option>AFM</option>
+                <option>AGS</option>
+                <option>Alfa Romeo</option>
+                <option>AlphaTauri</option>
+                <option>Alpine F1 Team</option>
+                <option>Alta</option>
+                <option>Amon</option>
+                <option>Andrea Moda</option>
+                <option>Apollon</option>
+                <option>Arrows</option>
+                <option>Arzani-Volpini</option>
+                <option>Aston Butterworth</option>
+                <option>Aston Martin</option>
+                <option>ATS</option>
+                <option>BAR</option>
+                <option>Behra-Porsche</option>
+                <option>Bellasi</option>
+                <option>Benetton</option>
+                <option>BMW</option>
+                <option>BMW Sauber</option>
+                <option>Boro</option>
+                <option>Brabham</option>
+                <option>Brabham-Alfa Romeo</option>
+                <option>Brabham-BRM</option>
+                <option>Brabham-Climax</option>
+                <option>Brabham-Ford</option>
+                <option>Brabham-Repco</option>
+                <option>Brawn</option>
+                <option>BRM</option>
+                <option>BRM-Ford</option>
+                <option>Bromme</option>
+                <option>BRP</option>
+                <option>Bugatti</option>
+                <option>Caterham</option>
+                <option>Christensen</option>
+                <option>Cisitalia</option>
+                <option>Coloni</option>
+                <option>Connaught</option>
+                <option>Connew</option>
+                <option>Cooper</option>
+                <option>Cooper-Alfa Romeo</option>
+                <option>Cooper-ATS</option>
+                <option>Cooper-Borgward</option>
+                <option>Cooper-BRM</option>
+                <option>Cooper-Castellotti</option>
+                <option>Cooper-Climax</option>
+                <option>Cooper-Ferrari</option>
+                <option>Cooper-Ford</option>
+                <option>Cooper-Maserati</option>
+                <option>Cooper-OSCA</option>
+                <option>Dallara</option>
+                <option>De Tomaso</option>
+                <option>De Tomaso-Alfa Romeo</option>
+                <option>De Tomaso-Ferrari</option>
+                <option>De Tomaso-Osca</option>
+                <option>Deidt</option>
+                <option>Del Roy</option>
+                <option>Derrington</option>
+                <option>Dunn</option>
+                <option>Eagle</option>
+                <option>Eagle-Climax</option>
+                <option>Eagle-Weslake</option>
+                <option>Elder</option>
+                <option>Embassy Hill</option>
+                <option>Emeryson</option>
+                <option>EMW</option>
+                <option>ENB</option>
+                <option>Ensign</option>
+                <option>Epperly</option>
+                <option>ERA</option>
+                <option>Euro Brun</option>
+                <option>Ewing</option>
+                <option>Ferguson</option>
+                <option>Ferrari</option>
+                <option>Fittipaldi</option>
+                <option>Fondmetal</option>
+                <option>Footwork</option>
+                <option>Force India</option>
+                <option>Forti</option>
+                <option>Frazer Nash</option>
+                <option>Fry</option>
+                <option>Gilby</option>
+                <option>Gordini</option>
+                <option>Haas F1 Team</option>
+                <option>Hall</option>
+                <option>Hesketh</option>
+                <option>Honda</option>
+                <option>HRT</option>
+                <option>HWM</option>
+                <option>Iso Marlboro</option>
+                <option>Jaguar</option>
+                <option>JBW</option>
+                <option>Jordan</option>
+                <option>Kauhsen</option>
+                <option>Klenk</option>
+                <option>Kojima</option>
+                <option>Kurtis Kraft</option>
+                <option>Kuzma</option>
+                <option>Lambo</option>
+                <option>Lancia</option>
+                <option>Langley</option>
+                <option>Larrousse</option>
+                <option>LDS</option>
+                <option>LDS-Alfa Romeo</option>
+                <option>LDS-Climax</option>
+                <option>LEC</option>
+                <option>Lesovsky</option>
+                <option>Leyton House</option>
+                <option>Life</option>
+                <option>Ligier</option>
+                <option>Lola</option>
+                <option>Lotus</option>
+                <option>Lotus F1</option>
+                <option>Lotus-Borgward</option>
+                <option>Lotus-BRM</option>
+                <option>Lotus-Climax</option>
+                <option>Lotus-Ford</option>
+                <option>Lotus-Maserati</option>
+                <option>Lotus-Pratt &amp; Whitney</option>
+                <option>Lyncar</option>
+                <option>Maki</option>
+                <option>Manor Marussia</option>
+                <option>March</option>
+                <option>March-Alfa Romeo</option>
+                <option>March-Ford</option>
+                <option>Marchese</option>
+                <option>Martini</option>
+                <option>Marussia</option>
+                <option>Maserati</option>
+                <option>Matra</option>
+                <option>Matra-Ford</option>
+                <option>MBM</option>
+                <option>McGuire</option>
+                <option>McLaren</option>
+                <option>McLaren-Alfa Romeo</option>
+                <option>McLaren-BRM</option>
+                <option>McLaren-Ford</option>
+                <option>McLaren-Serenissima</option>
+                <option>Mercedes</option>
+                <option>Merzario</option>
+                <option>Meskowski</option>
+                <option>MF1</option>
+                <option>Milano</option>
+                <option>Minardi</option>
+                <option>Moore</option>
+                <option>Nichels</option>
+                <option>Olson</option>
+                <option>Onyx</option>
+                <option>OSCA</option>
+                <option>Osella</option>
+                <option>Pacific</option>
+                <option>Pankratz</option>
+                <option>Parnelli</option>
+                <option>Pawl</option>
+                <option>Penske</option>
+                <option>Phillips</option>
+                <option>Politoys</option>
+                <option>Porsche</option>
+                <option>Prost</option>
+                <option>Protos</option>
+                <option>Racing Point</option>
+                <option>Rae</option>
+                <option>RAM</option>
+                <option>RB F1 Team</option>
+                <option>RE</option>
+                <option>Rebaque</option>
+                <option>Red Bull</option>
+                <option>Renault</option>
+                <option>Rial</option>
+                <option>Sauber</option>
+                <option>Scarab</option>
+                <option>Schroeder</option>
+                <option>Scirocco</option>
+                <option>Shadow</option>
+                <option>Shadow-Ford</option>
+                <option>Shadow-Matra</option>
+                <option>Shannon</option>
+                <option>Sherman</option>
+                <option>Simca</option>
+                <option>Simtek</option>
+                <option>Snowberger</option>
+                <option>Spirit</option>
+                <option>Spyker</option>
+                <option>Spyker MF1</option>
+                <option>Stebro</option>
+                <option>Stevens</option>
+                <option>Stewart</option>
+                <option>Super Aguri</option>
+                <option>Surtees</option>
+                <option>Sutton</option>
+                <option>Talbot-Lago</option>
+                <option>Team Lotus</option>
+                <option>Tec-Mec</option>
+                <option>Tecno</option>
+                <option>Theodore</option>
+                <option>Token</option>
+                <option>Toleman</option>
+                <option>Toro Rosso</option>
+                <option>Toyota</option>
+                <option>Trevis</option>
+                <option>Trojan</option>
+                <option>Turner</option>
+                <option>Tyrrell</option>
+                <option>Vanwall</option>
+                <option>Veritas</option>
+                <option>Virgin</option>
+                <option>Watson</option>
+                <option>Wetteroth</option>
+                <option>Williams</option>
+              </select>
+              <button id="filter">Select</button>
+            </div>
             <div class="card border-primary mb-3">
               <div class="card-header mt-1">
                 <h4 class="card-title">Driver Overview</h4>
               </div>
-              <div id="sample-metadata" class="card-text ms-3 mb-1 mt-1"></div>
+              <div id="sample-metadata" class="card-text ms-3 mb-1 mt-1">
+              </div>
             </div>
           </div>
+        </div>
           <div class="col-md-9">
             <div id="bar"></div>
           </div>
@@ -85,7 +303,7 @@
             <div id="bubble"></div>
           </div>
         </div>
-      </div>
+    </div>
     
       
       <script src="./static/js/app.js"></script>

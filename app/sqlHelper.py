@@ -143,35 +143,33 @@ class SQLHelper():
         data = df3.to_dict(orient="records")
         return(data)
 
+    #SUNBURST CONSTRUCTOR
+    def sunburst_query(self):
 
-    # # USING RAW SQL
-    # def get_bar(self, min_attempts, region):
+        Circuits = self.Base.classes.circuits
+        Constructors = self.Base.classes.constructors
+        Drivers = self.Base.classes.drivers
+        Results = self.Base.classes.results
+        Races = self.Base.classes.races
 
-    #     # switch on user_region
-    #     if region == 'All':
-    #         where_clause = "and 1=1"
-    #     else:
-    #         where_clause = f"and region = '{region}'"
+        # Create our session (link) from Python to the DB
+        session = Session(self.engine)
 
-    #     # build the query
-    #     query = f"""
-    #         SELECT
-    #             name,
-    #             full_name,
-    #             region,
-    #             launch_attempts,
-    #             launch_successes
-    #         FROM
-    #             launchpads
-    #         WHERE
-    #             launch_attempts >= {min_attempts}
-    #             {where_clause}
-    #         ORDER BY
-    #             launch_attempts DESC;
-    #     """
+        #query
+        race_query = session.query(Races.name, Circuits.name, Circuits.country, Races.year, Races.date, Races.round, Constructors.name, Drivers.forename, Drivers.surname, Results.position, Results.rank).\
+            filter(Constructors.constructorId == Results.constructorId).\
+            filter(Drivers.driverId == Results.driverId).\
+            filter(Circuits.circuitId == Races.circuitId).\
+            filter(Races.raceId == Results.raceId).\
+            order_by(Races.year.desc()).\
+            order_by(Races.date.asc()).\
+            order_by(Results.points.desc()).all()
+        
+        #close session
+        session.close()
 
-    #     df = pd.read_sql(text(query), con = self.engine)
-    #     data = df.to_dict(orient="records")
-    #     return(data)
+        #save query to dataframe
+        df4 = pd.DataFrame(race_query, columns=["race", "circuit", "country", "year", "date", "round", "constructor", "driver_first", "driver_last", "position", "rank"])
 
-    
+        data = df4.to_dict(orient="records")
+        return(data)
