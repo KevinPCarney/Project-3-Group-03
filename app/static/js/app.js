@@ -137,7 +137,7 @@ function init_dashboard() {
       let allNationality = names;
   
       // Build charts and metadata panel with the first nationality
-      // buildBar(allNationality);
+      buildBar(allNationality);
       buildBubble(allNationality);
       // buildMetadata(firstSample);
     });
