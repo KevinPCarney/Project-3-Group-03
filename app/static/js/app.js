@@ -56,57 +56,54 @@ function buildBubble(newData) {
   Plotly.newPlot("bubble", bubble_traces, bubble_layout);
 };
 
-// function buildBar(data) {
-//     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
-//     let y_bar_val = otu_ids.map(x => `OTU: ${x}`);
-//     //console log
-//     console.log(y_bar_val);
+// function to create a horizontal bar chart
+function buildBar(data) {
+    // For the Bar Chart, map the otu_ids to a list of strings for your yticks
+    let y_bar_val = otu_ids.map(x => `OTU: ${x}`);
+    //console log
+    console.log(y_bar_val);
 
-//     // Build a Bar Chart
-//     // slice and reverse the input 
-//     let bar_trace = {
-//       x: number_races.slice(0,10).reverse(),
-//       y: drivers_name.slice(0,10).reverse(),
-//       type: 'bar',
-//       marker: {
-//         colorscale: 'YlOrRd',
-//         color: sample_values.slice(0,10).reverse()
-//       },
-//       text: drivers_name.slice(0,10).reverse(),
-//       orientation: 'h'
-//     }
+    // Build a Bar Chart
+    // slice and reverse the input 
+    let bar_trace = {
+      x: number_races.slice(0,10).reverse(),
+      y: drivers_name.slice(0,10).reverse(),
+      type: 'bar',
+      marker: {
+        colorscale: 'YlOrRd',
+        color: sample_values.slice(0,10).reverse()
+      },
+      text: drivers_name.slice(0,10).reverse(),
+      orientation: 'h'
+    }
 
-//     // Render the Bar Chart
-//     // Create data array
-//     let bar_traces = [bar_trace];
+    // Render the Bar Chart
+    // Create data array
+    let bar_traces = [bar_trace];
 
-//     // Bar Chart Layout
-//     // Apply a title to the layout
-//     let bar_layout = {
-//       //background color, code from chat gbt
-//       // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-//       // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-//       font: {
-//           color: 'white'
-//         },
-//       title: {
-//         text: "Driver Wins by Nationality",
-//         font: {
-//           color: 'white',
-//           size: 28
-//         }},
-//       xaxis: {
-//         title: 'Driver'
-//         }
-//     }
+    // Bar Chart Layout
+    // Apply a title to the layout
+    let bar_layout = {
+      //background color, code from chat gbt
+      // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+      // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+      font: {
+          color: 'white'
+        },
+      title: {
+        text: "Driver Wins by Nationality",
+        font: {
+          color: 'white',
+          size: 28
+        }},
+      xaxis: {
+        title: 'Driver'
+        }
+    }
     
-//     // Render the plot to the div tag with id "plot"
-//     Plotly.newPlot("bar", bar_traces, bar_layout);
-//   }
-  
-  function createMap(){
-  
-}
+    // Render the plot to the div tag with id "plot"
+    Plotly.newPlot("bar", bar_traces, bar_layout);
+  }
 
 // function to run on page load
 function init_dashboard() {

@@ -131,14 +131,19 @@ class SQLHelper():
         # Create our session (link) from Python to the DB
         session = Session(self.engine)
 
-        #query		
-        map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).all()
+        #query
+        map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).all()		
+        # if country != 'All':
+        #     map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).\
+        #     filter(Circuits.country == f"{country}").all()
+        # else:
+        #     map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).all()
 
         # close session
         session.close()
 
         #save query to dataframe
-        df3 = pd.DataFrame(map_query, columns=["Circuit Name", "City", "Country", "Latitude", "Longitude"])
+        df3 = pd.DataFrame(map_query, columns=["circuit_name", "city", "country", "latitude", "longitude"])
 
         data = df3.to_dict(orient="records")
         return(data)
