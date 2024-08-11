@@ -1,3 +1,7 @@
+// Goal: 
+// Outer layer: Constructor
+// Inner layer: Drivers
+// If time add to label: Years on Team, Number of races driven for the team
 
 // Plotly Suburst Code
 // var data = [
@@ -16,6 +20,6 @@
 //     };
     
     
-//     Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true})
+//     Plotly.newPlot('sunburst', data, layout, {showSendToCloud: true})
     
-//     myPlot = document.getElementById("myDiv");
+//     myPlot = document.getElementById("sunburst");
