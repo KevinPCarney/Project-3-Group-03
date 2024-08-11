@@ -34,21 +34,21 @@ function buildBubble(newData) {
   // Bubble Chart Layout
   let bubble_layout = {
     //background color, code from chat gbt
-    // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-    // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+    // paper_bgcolor: 'rgba(64, 78, 77, 1)',    // Outerspace 
+    // plot_bgcolor: 'rgba(64, 78, 77, 1)',      // Outerspace
     title: {
-      text: 'Driver Wins and Average Finish',
+      text: 'Wins and Average Finish',
       font: {
-        color: 'white',
+        color: 'black',
         size: 28
       }},
     xaxis: {
-      title: 'Driver Names',
-      color: "white"
+      title: 'Drivers',
+      color: 'black'
       },
     yaxis: {
       title: 'Average Finish',
-      color: "white"
+      color: 'black'
       },
     showlegend: false
   }
@@ -56,53 +56,53 @@ function buildBubble(newData) {
   Plotly.newPlot("bubble", bubble_traces, bubble_layout);
 };
 
-function buildBar(data) {
-    // For the Bar Chart, map the otu_ids to a list of strings for your yticks
-    let y_bar_val = otu_ids.map(x => `OTU: ${x}`);
-    //console log
-    console.log(y_bar_val);
+// function buildBar(data) {
+//     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
+//     let y_bar_val = otu_ids.map(x => `OTU: ${x}`);
+//     //console log
+//     console.log(y_bar_val);
 
-    // Build a Bar Chart
-    // slice and reverse the input 
-    let bar_trace = {
-      x: sample_values.slice(0,10).reverse(),
-      y: y_bar_val.slice(0,10).reverse(),
-      type: 'bar',
-      marker: {
-        colorscale: 'YlOrRd',
-        color: sample_values.slice(0,10).reverse()
-      },
-      text: otu_labels.slice(0,10).reverse(),
-      orientation: 'h'
-    }
+//     // Build a Bar Chart
+//     // slice and reverse the input 
+//     let bar_trace = {
+//       x: number_races.slice(0,10).reverse(),
+//       y: drivers_name.slice(0,10).reverse(),
+//       type: 'bar',
+//       marker: {
+//         colorscale: 'YlOrRd',
+//         color: sample_values.slice(0,10).reverse()
+//       },
+//       text: drivers_name.slice(0,10).reverse(),
+//       orientation: 'h'
+//     }
 
-    // Render the Bar Chart
-    // Create data array
-    let bar_traces = [bar_trace];
+//     // Render the Bar Chart
+//     // Create data array
+//     let bar_traces = [bar_trace];
 
-    // Bar Chart Layout
-    // Apply a title to the layout
-    let bar_layout = {
-      //background color, code from chat gbt
-      // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-      // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-      font: {
-          color: 'white'
-        },
-      title: {
-        text: "Top 10 Bacteria Cultures Found",
-        font: {
-          color: 'white',
-          size: 28
-        }},
-      xaxis: {
-        title: 'Number of Bacteria'
-        }
-    }
+//     // Bar Chart Layout
+//     // Apply a title to the layout
+//     let bar_layout = {
+//       //background color, code from chat gbt
+//       // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+//       // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+//       font: {
+//           color: 'white'
+//         },
+//       title: {
+//         text: "Driver Wins by Nationality",
+//         font: {
+//           color: 'white',
+//           size: 28
+//         }},
+//       xaxis: {
+//         title: 'Driver'
+//         }
+//     }
     
-    // Render the plot to the div tag with id "plot"
-    Plotly.newPlot("bar", bar_traces, bar_layout);
-  }
+//     // Render the plot to the div tag with id "plot"
+//     Plotly.newPlot("bar", bar_traces, bar_layout);
+//   }
   
   function createMap(){
   

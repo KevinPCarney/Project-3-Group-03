@@ -1,0 +1,33 @@
+/* Chat GBT styling for Source html to create hover link 
+
+/* Header styling */
+.header {
+    text-align: left; /* Align text to the left */
+    padding: 20px;
+}
+
+/* Link container styling */
+.link-container {
+    width: 100%;
+    padding: 10px 20px; /* Add padding to align with the header */
+    background-color: #9D948B;
+    text-align: left; /* Align text to the left */
+}
+
+/* Individual link styling */
+.link-container a {
+    display: block;
+    color: #404E4D;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #9D948B;
+    margin: 5px 0; /* Adjust margins for left alignment */
+    width: auto; /* Allow links to take up only the necessary width */
+}
+
+/* Hover effect for links */
+.link-container a:hover {
+    background-color: #e0e0e0;
+}
