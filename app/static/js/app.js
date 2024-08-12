@@ -24,7 +24,7 @@ function buildBubble(data) {
    let bubble_trace = {
     x: avg_finish,
     y: number_races,
-    text: drivers_name,
+    text: drivers_last,
     mode: 'markers',
     marker: {
       color: number_races,
