@@ -61,58 +61,57 @@ function buildBubble(data) {
   Plotly.newPlot("bubble", bubble_traces, bubble_layout);
 };
 
-// // function to create a horizontal bar chart
-// function buildBar(data) {
+// function to create a horizontal bar chart
+function buildBar(data) {
 
-//     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
-//     let winner_info = data.map(x => x.nationality);
-//     //console log
-//     console.log(winner_info);
+    // For the Bar Chart, map the otu_ids to a list of strings for your yticks
 
-//     // Build a Bar Chart
-//     // slice and reverse the input 
-//     // Horizontal bar chart where the y is Drivers Name and x is the number of 1st place finishes
-//     let driversName = `${winner_info.first_name} ${winner_info.last_name}`
+    // Build a Bar Chart
+    // slice and reverse the input 
+    // Horizontal bar chart where the y is Drivers Name and x is the number of 1st place finishes
+    let driver_first = data.bar_data.map(row => row.first_name);
+    let driver_last = data.bar_data.map(row => row.last_name);
+    let winNumber = data.bar_data.map(row => row.wins)
 
-//     let bar_trace = {
-//       x: winNumber.slice(0,10).reverse(),
-//       y: driversName.slice(0,10).reverse(),
-//       type: 'bar',
-//       marker: {
-//         colorscale: 'YlOrRd',
-//         color: sample_values.slice(0,10).reverse()
-//       },
-//       text: driversName.slice(0,10).reverse(),
-//       orientation: 'h'
-//     }
+    let bar_trace = {
+      x: winNumber.slice(0,10).reverse(),
+      y: driver_last.slice(0,10).reverse(),
+      type: 'bar',
+      marker: {
+        colorscale: 'YlOrRd',
+        // color: sample_values.slice(0,10).reverse()
+      },
+      text: driver_last.slice(0,10).reverse(),
+      orientation: 'h'
+    }
 
-//     // Render the Bar Chart
-//     // Create data array
-//     let bar_traces = [bar_trace];
+    // Render the Bar Chart
+    // Create data array
+    let bar_traces = [bar_trace];
 
-//     // Bar Chart Layout
-//     // Apply a title to the layout
-//     let bar_layout = {
-//       //background color, code from chat gbt
-//       // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-//       // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-//       font: {
-//           color: 'white'
-//         },
-//       title: {
-//         text: "Driver Wins by Nationality",
-//         font: {
-//           color: 'white',
-//           size: 28
-//         }},
-//       xaxis: {
-//         title: 'Driver'
-//         }
-//     }
+    // Bar Chart Layout
+    // Apply a title to the layout
+    let bar_layout = {
+      //background color, code from chat gbt
+      // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+      // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
+      font: {
+          color: 'white'
+        },
+      title: {
+        text: "Driver Wins by Nationality",
+        font: {
+          color: 'white',
+          size: 28
+        }},
+      xaxis: {
+        title: 'Driver'
+        }
+    }
     
-//     // Render the plot to the div tag with id "plot"
-//     Plotly.newPlot("bar", bar_traces, bar_layout);
-//   }
+    // Render the plot to the div tag with id "plot"
+    Plotly.newPlot("bar", bar_traces, bar_layout);
+  }
 
 // function to run on page load
 function init_dropdown() {
@@ -142,7 +141,7 @@ function init_dropdown() {
       let allNationality = names[0];
   
       // Build charts and metadata panel with the first nationality
-      // buildBar(allNationality);
+      buildBar(allNationality);
       buildBubble(allNationality);
       // buildMetadata(firstSample);
     });
@@ -157,7 +156,7 @@ function init_dashboard(){
   d3.json(url_dash).then(function(data){
 
     // Build charts and metadata panel each time a new sample is selected
-    // buildBar(data.bar_data);
+    buildBar(data);
     buildBubble(data);
   })
 
@@ -180,4 +179,4 @@ function optionChanged() {
 
 // Initialize the dashboard
 init_dashboard();
-init_dropdown()
+init_dropdown();

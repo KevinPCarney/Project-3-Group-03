@@ -1,4 +1,13 @@
 function createMap(data){
+    // create the map html
+    let mapContainer = d3.select("#map");
+
+    // Empty the map_container div
+    mapContainer.html("");
+
+    // Append a div with id "map" inside the map_container div
+    mapContainer.append("div").attr("id", "map");
+
     // base layers
     let street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

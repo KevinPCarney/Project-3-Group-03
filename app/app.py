@@ -57,7 +57,7 @@ def get_dropdown():
 #BAR & BUBBLE CHART
 @app.route("/api/v1.0/get_dashboard/<nationality>")
 def get_dashboard(nationality):
-    bar_data = sql.query_nationality(nationality)
+    bar_data = sql.bar_chart(nationality)
     bubble_data = sql.bubble_chart(nationality)
 
     data = {

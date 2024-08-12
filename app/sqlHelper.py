@@ -61,7 +61,7 @@ class SQLHelper():
 
 
 	#Drivers Nationality
-    def query_nationality(self, nationality):
+    def bar_chart(self, nationality):
             
         Results = self.Base.classes.results        
         Drivers = self.Base.classes.drivers
@@ -77,13 +77,13 @@ class SQLHelper():
             filter(Results.position == 1).\
             filter(Drivers.nationality == f"{nationality}").\
             group_by(Drivers.forename, Drivers.surname).\
-            order_by(func.count(Results.position).asc()).all()
+            order_by(func.count(Results.position).desc()).all()
         else:
             driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), Drivers.nationality).\
             filter(Drivers.driverId == Results.driverId).\
             filter(Results.position == 1).\
             group_by(Drivers.forename, Drivers.surname).\
-            order_by(func.count(Results.position).asc()).all()
+            order_by(func.count(Results.position).desc()).all()
 
         # close session
         session.close()
