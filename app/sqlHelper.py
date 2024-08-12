@@ -151,30 +151,24 @@ class SQLHelper():
     #SUNBURST CONSTRUCTOR
     def sunburst_query(self):
 
-        Circuits = self.Base.classes.circuits
         Constructors = self.Base.classes.constructors
         Drivers = self.Base.classes.drivers
         Results = self.Base.classes.results
-        Races = self.Base.classes.races
 
         # Create our session (link) from Python to the DB
         session = Session(self.engine)
 
         #query
-        race_query = session.query(Races.name, Circuits.name, Circuits.country, Races.year, Races.date, Races.round, Constructors.name, Drivers.forename, Drivers.surname, Results.position, Results.rank).\
+        constructor_query = session.query(Constructors.name, Drivers.forename, Drivers.surname).\
             filter(Constructors.constructorId == Results.constructorId).\
             filter(Drivers.driverId == Results.driverId).\
-            filter(Circuits.circuitId == Races.circuitId).\
-            filter(Races.raceId == Results.raceId).\
-            order_by(Races.year.desc()).\
-            order_by(Races.date.asc()).\
-            order_by(Results.points.desc()).all()
+            order_by(Constructors.name.asc()).all()
         
         #close session
         session.close()
 
         #save query to dataframe
-        df4 = pd.DataFrame(race_query, columns=["race", "circuit", "country", "year", "date", "round", "constructor", "driver_first", "driver_last", "position", "rank"])
-
-        data = df4.to_dict(orient="records")
+        df = pd.DataFrame(constructor_query, columns=["constructor", "driver_first", "driver_last"])   
+        
+        data = df.to_dict(orient="records")
         return(data)
