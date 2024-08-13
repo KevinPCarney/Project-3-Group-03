@@ -149,26 +149,69 @@ class SQLHelper():
         return(data)
 
     #SUNBURST CONSTRUCTOR
-    def sunburst_query(self):
+    def sunburst_query(self, min_year, max_year):
 
-        Constructors = self.Base.classes.constructors
-        Drivers = self.Base.classes.drivers
-        Results = self.Base.classes.results
 
-        # Create our session (link) from Python to the DB
-        session = Session(self.engine)
+        query = f"""
+            SELECT
+                c.name as label,
+                "" as parent,
+                count(r.raceId) as num_races
+            FROM
+                constructors c 
+                JOIN results r on c.constructorId = r.constructorId
+                JOIN drivers d on d.driverId = r.driverId
+                JOIN races ra on r.raceId = ra.raceId
+            WHERE
+                ra.year >= {min_year}
+                AND ra.year <= {max_year}
+            GROUP BY
+                c.constructorId
+            
+            UNION ALL 
 
-        #query
-        constructor_query = session.query(Constructors.name, Drivers.forename, Drivers.surname).\
-            filter(Constructors.constructorId == Results.constructorId).\
-            filter(Drivers.driverId == Results.driverId).\
-            order_by(Constructors.name.asc()).all()
+            SELECT
+                d.forename || " " || d.surname || "<br>" || c.name as label,
+                c.name as parent,
+                count(r.raceId) as num_races
+            FROM
+                constructors c 
+                JOIN results r on c.constructorId = r.constructorId
+                JOIN drivers d on d.driverId = r.driverId
+                JOIN races ra on r.raceId = ra.raceId
+            WHERE
+                ra.year >= {min_year}
+                AND ra.year <= {max_year}
+            GROUP BY
+                d.driverId, 
+                c.constructorId;
+        """
+
+        df_sunburst = pd.read_sql(text(query), con=self.engine)
+
+
+        # Constructors = self.Base.classes.constructors
+        # Drivers = self.Base.classes.drivers
+        # Results = self.Base.classes.results
+        # Races = self.Base.classes.races
+
+        # # Create our session (link) from Python to the DB
+        # session = Session(self.engine)
+
+        # #query
+        # constructor_query = session.query(Constructors.name, Drivers.forename, Drivers.surname).\
+        #     filter(Constructors.constructorId == Results.constructorId).\
+        #     filter(Drivers.driverId == Results.driverId).\
+        #     filter(Results.raceId == Races.raceId).\
+        #     group_by(Drivers.driverId).\
+        #     order_by(Constructors.name.asc()).all()
         
-        #close session
-        session.close()
-
-        #save query to dataframe
-        df = pd.DataFrame(constructor_query, columns=["constructor", "driver_first", "driver_last"])   
         
-        data = df.to_dict(orient="records")
+        # #close session
+        # session.close()
+
+        # #save query to dataframe
+        # df = pd.DataFrame(constructor_query, columns=["constructor", "first_name", "last_name"])   
+        
+        data = df_sunburst.to_dict(orient="records")
         return(data)

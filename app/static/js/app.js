@@ -65,10 +65,17 @@ function buildBubble(data) {
 function buildBar(data) {
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
+<<<<<<< Updated upstream
+=======
+    let winner_info = data.map(x => x.nationality);
+    //console log
+    console.log(winner_info);
+>>>>>>> Stashed changes
 
     // Build a Bar Chart
     // slice and reverse the input 
     // Horizontal bar chart where the y is Drivers Name and x is the number of 1st place finishes
+<<<<<<< Updated upstream
     let driver_first = data.bar_data.map(row => row.first_name);
     let driver_last = data.bar_data.map(row => row.last_name);
     let winNumber = data.bar_data.map(row => row.wins)
@@ -82,6 +89,19 @@ function buildBar(data) {
         // color: sample_values.slice(0,10).reverse()
       },
       text: driver_last.slice(0,10).reverse(),
+=======
+    let driversName = `${winner_info.first_name} ${winner_info.last_name}`
+
+    let bar_trace = {
+      x: winNumber.slice(0,10).reverse(),
+      y: driversName.slice(0,10).reverse(),
+      type: 'bar',
+      marker: {
+        colorscale: 'YlOrRd',
+        color: sample_values.slice(0,10).reverse()
+      },
+      text: driversName.slice(0,10).reverse(),
+>>>>>>> Stashed changes
       orientation: 'h'
     }
 
@@ -158,6 +178,7 @@ function init_dashboard(){
     // Build charts and metadata panel each time a new sample is selected
     buildBar(data);
     buildBubble(data);
+    buildBar(data);
   })
 
 

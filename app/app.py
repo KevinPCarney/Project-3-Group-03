@@ -81,9 +81,9 @@ def get_map(country):
 
 #SUNBURST
 #NEEDS CHANGED TO COME BACK AS LIST OF DICT
-@app.route("/api/v1.0/get_sunburst")
-def get_sunburst():
-    data = sql.sunburst_query()
+@app.route("/api/v1.0/get_sunburst/<min_year>/<max_year>")
+def get_sunburst(min_year, max_year):
+    data = sql.sunburst_query(min_year, max_year)
     return(jsonify(data))
 
 # Run the App
