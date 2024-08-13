@@ -19,7 +19,8 @@ function buildBubble(data) {
       colorscale: 'YlOrRd',
       type: 'heatmap'
     }
-  }
+  };
+
   // Render the Bubble Chart
   // Create data array
   let bubble_traces = [bubble_trace];
@@ -54,31 +55,18 @@ function buildBar(data) {
     // slice and reverse the input 
     // Horizontal bar chart where the y is Drivers Name and x is the number of 1st place finishes
     let drivers_name = data.bar_data.map(row => row.first_name + " " + row.last_name);
-    let driver_last = data.bar_data.map(row => row.last_name);
+    let drivers_last = data.bar_data.map(row => row.last_name);
     let winNumber = data.bar_data.map(row => row.wins)
 
     let bar_trace = {
       x: winNumber.slice(0,10).reverse(),
-      y: drivers_name.slice(0,10).reverse(),
+      y: drivers_last.slice(0,10).reverse(),
       type: 'bar',
       marker: {
         colorscale: 'YlOrRd',
         color: "#641211"
       },
-      text: driver_last.slice(0,10).reverse(),
-=======
-    let driversName = `${winner_info.first_name} ${winner_info.last_name}`
-
-    let bar_trace = {
-      x: winNumber.slice(0,10).reverse(),
-      y: driversName.slice(0,10).reverse(),
-      type: 'bar',
-      marker: {
-        colorscale: 'YlOrRd',
-        color: sample_values.slice(0,10).reverse()
-      },
-      text: driversName.slice(0,10).reverse(),
->>>>>>> Stashed changes
+      text: drivers_name.slice(0,10).reverse(),
       orientation: 'h'
     }
 
