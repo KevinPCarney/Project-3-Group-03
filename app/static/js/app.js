@@ -36,11 +36,11 @@ function buildBubble(data) {
         size: 28
       }},
     xaxis: {
-      title: 'Number of Wins',
+      title: 'Average Finish',
       color: 'black'
       },
     yaxis: {
-      title: 'Average Finish',
+      title: 'Number of Wins',
       color: 'black'
       },
     showlegend: false
