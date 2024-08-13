@@ -70,8 +70,8 @@ function createMap(data){
   
     // Step 4: INIT the Map
     let myMap = L.map("map", {
-      center: [40.7128, -74.0059],
-      zoom: 11,
+      center: [0, 0],
+      zoom: 2,
       layers: [street, markers]
     });
   
