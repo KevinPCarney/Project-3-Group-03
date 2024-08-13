@@ -30,7 +30,7 @@ function buildBubble(data) {
     // paper_bgcolor: 'rgba(64, 78, 77, 1)',    // Outerspace 
     // plot_bgcolor: 'rgba(64, 78, 77, 1)',      // Outerspace
     title: {
-      text: 'Wins and Average Finish',
+      text: 'Races Driven and Average Finish',
       font: {
         color: 'black',
         size: 28
@@ -40,7 +40,7 @@ function buildBubble(data) {
       color: 'black'
       },
     yaxis: {
-      title: 'Number of Wins',
+      title: 'Number of Races Driven',
       color: 'black'
       },
     showlegend: false
