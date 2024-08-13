@@ -1,6 +1,6 @@
 function createMap(data){
     // create the map html
-    let mapContainer = d3.select("#map");
+    let mapContainer = d3.select("#map-container");
 
     // Empty the map_container div
     mapContainer.html("");
@@ -80,34 +80,34 @@ function createMap(data){
     L.control.layers(baseLayers, overlayLayers).addTo(myMap);
   }
 
-function init() {
-
-  // Assemble the API query URL.
-  let url = `/api/v1.0/get_map`;
-
-  d3.json(url).then(function (data) {
-      createMap(data)
-  });
-}
-
-// function if we are doing it 
 // function init() {
-//   // extract user input
-//   let country = d3.select("#country_filter").property("value");
 
 //   // Assemble the API query URL.
-//   let url = `/api/v1.0/get_map/${country}`;
+//   let url = '/api/v1.0/get_map';
 
 //   d3.json(url).then(function (data) {
 //       createMap(data)
 //   });
 // }
 
-//   // Function for event listener
-// function optionChanged(newCountry) {
+// function if we are doing it 
+function init() {
+  // extract user input
+  let country = d3.select("#country_filter").property("value");
 
-//   // Build map each time a country is selected
-//   createMap(newCountry);
-// };
+  // Assemble the API query URL.
+  let url = `/api/v1.0/get_map/${country}`;
+
+  d3.json(url).then(function (data) {
+      createMap(data)
+  });
+}
+
+  // Function for event listener
+function optionChanged(newCountry) {
+
+  // Build map each time a country is selected
+  init();
+};
   
 init();

@@ -124,7 +124,7 @@ class SQLHelper():
         return(data) 
 
     #MAP
-    def query_map(self):
+    def query_map(self, country):
         
         Circuits = self.Base.classes.circuits
 
@@ -132,12 +132,12 @@ class SQLHelper():
         session = Session(self.engine)
 
         #query
-        map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).all()		
-        # if country != 'All':
-        #     map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).\
-        #     filter(Circuits.country == f"{country}").all()
-        # else:
-        #     map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).all()
+        # map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).all()		
+        if country != 'All':
+            map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).\
+            filter(Circuits.country == f"{country}").all()
+        else:
+            map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).all()
 
         # close session
         session.close()

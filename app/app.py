@@ -68,16 +68,16 @@ def get_dashboard(nationality):
     return(jsonify(data))
 
 # #MAP w/ filter
-# @app.route("/api/v1.0/get_map/<country>")
-# def get_map(country):
-#     data = sql.query_map(country)
-#     return(jsonify(data))
-
-#MAP
-@app.route("/api/v1.0/get_map")
-def get_map():
-    data = sql.query_map()
+@app.route("/api/v1.0/get_map/<country>")
+def get_map(country):
+    data = sql.query_map(country)
     return(jsonify(data))
+
+# #MAP
+# @app.route("/api/v1.0/get_map")
+# def get_map():
+#     data = sql.query_map()
+#     return(jsonify(data))
 
 #SUNBURST
 #NEEDS CHANGED TO COME BACK AS LIST OF DICT
