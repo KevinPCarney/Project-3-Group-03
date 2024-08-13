@@ -1,30 +1,17 @@
 // Function to create bubble charts
 function buildBubble(data) {
-  // get user input
-  // let nationality = d3.select("#selNationality").property("value");
-
-    // Filter the samples for the object with the desired sample number
-    //THIS FIELD
-    // console.log("**")
-    // console.log(d3.map(data.bubble_data).values())
-    // console.log("**")
-    // let driver_info = newData.map(x => x.nationality);
-    // console.log(driver_info);
 
 
-    // Get the otu_ids, otu_labels, and sample_values
-    let drivers_last = data.bubble_data.map(row => row.last_name);
-    let drivers_first = data.bubble_data.map(row => row.first_name);
+    // Get the driver first and last name, average finish, and number of races they've driven
+    let drivers_name = data.bubble_data.map(row => row.first_name + " " + row.last_name);
     let avg_finish = data.bubble_data.map(row => row.avg_finish);
     let number_races = data.bubble_data.map(row => row.number_races);
-
-    let drivers_name = `${drivers_first} ${drivers_last}`
 
    // Build a Bubble Chart
    let bubble_trace = {
     x: avg_finish,
     y: number_races,
-    text: drivers_last,
+    text: drivers_name,
     mode: 'markers',
     marker: {
       color: number_races,
@@ -48,7 +35,7 @@ function buildBubble(data) {
         size: 28
       }},
     xaxis: {
-      title: 'Drivers',
+      title: 'Number of Wins',
       color: 'black'
       },
     yaxis: {
@@ -63,30 +50,20 @@ function buildBubble(data) {
 
 // function to create a horizontal bar chart
 function buildBar(data) {
-
-    // For the Bar Chart, map the otu_ids to a list of strings for your yticks
-<<<<<<< Updated upstream
-=======
-    let winner_info = data.map(x => x.nationality);
-    //console log
-    console.log(winner_info);
->>>>>>> Stashed changes
-
     // Build a Bar Chart
     // slice and reverse the input 
     // Horizontal bar chart where the y is Drivers Name and x is the number of 1st place finishes
-<<<<<<< Updated upstream
-    let driver_first = data.bar_data.map(row => row.first_name);
+    let drivers_name = data.bar_data.map(row => row.first_name + " " + row.last_name);
     let driver_last = data.bar_data.map(row => row.last_name);
     let winNumber = data.bar_data.map(row => row.wins)
 
     let bar_trace = {
       x: winNumber.slice(0,10).reverse(),
-      y: driver_last.slice(0,10).reverse(),
+      y: drivers_name.slice(0,10).reverse(),
       type: 'bar',
       marker: {
         colorscale: 'YlOrRd',
-        // color: sample_values.slice(0,10).reverse()
+        color: "#641211"
       },
       text: driver_last.slice(0,10).reverse(),
 =======
@@ -112,9 +89,6 @@ function buildBar(data) {
     // Bar Chart Layout
     // Apply a title to the layout
     let bar_layout = {
-      //background color, code from chat gbt
-      // paper_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
-      // plot_bgcolor: 'rgba(47, 47, 47, 0.8)', // dark gray
       font: {
           color: 'white'
         },
@@ -163,7 +137,6 @@ function init_dropdown() {
       // Build charts and metadata panel with the first nationality
       buildBar(allNationality);
       buildBubble(allNationality);
-      // buildMetadata(firstSample);
     });
 }
 
@@ -175,7 +148,7 @@ function init_dashboard(){
 
   d3.json(url_dash).then(function(data){
 
-    // Build charts and metadata panel each time a new sample is selected
+    // Build charts each time a new nationality is selected
     buildBar(data);
     buildBubble(data);
     buildBar(data);
@@ -192,12 +165,12 @@ function optionChanged() {
 
   d3.json(url_dash).then(function(data){
 
-    // Build charts and metadata panel each time a new sample is selected
+    // Build charts each time a new nationality is selected
     init_dashboard(data)
   })
 
 }
 
-// Initialize the dashboard
+// Initialize the dashboards
 init_dashboard();
 init_dropdown();
