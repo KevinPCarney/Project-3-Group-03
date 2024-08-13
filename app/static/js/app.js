@@ -78,12 +78,12 @@ function buildBar(data) {
     // Apply a title to the layout
     let bar_layout = {
       font: {
-          color: 'white'
+          color: 'black'
         },
       title: {
         text: "Driver Wins by Nationality",
         font: {
-          color: 'white',
+          color: 'black',
           size: 28
         }},
       xaxis: {
