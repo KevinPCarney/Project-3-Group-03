@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><strong>Formula 1 Reference</strong></title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://bootswatch.com/5/simplex/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/css/static.css" rel="stylesheet">
+
+    <!-- JS IMPORTS - External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- BACKGROUND IMAGE, CHAT GBT-->
+    <style>
+        body {
+            background-image: url('static/images/light_grey_lines_background.jpg');
+            background-size: 25%;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <!-- Having issue getting the logo image loading -->
+            <a class="navbar-brand" href="/"><img src="static/images/logo.jpg" onerror="this.onerror=null; this.remove()" width="45" height="30"></a>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/sunburst">Sunburst</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/map">Circuit Map</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/about_us">About Us</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/sources">Sources</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Add spacing -->
+    <br/>
+
+    <!-- Dashboard -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>FORMULA 1 REFERENCE GUIDE</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+              
+              <br/>
+            </div>
+            
+        <div class="row">
+            <div class="col-md-5 about-block">
+                <h2>WHAT IS FORMULA 1?</h2>
+                <h4>Formula 1, or F1, is team-based car racing that occurs all across the world. As of 2024, up to 20 drivers can participate in any given race. Historically, however, some races have had up to 34 drivers. Each of the teams have two cars they can potentially use in a race. An average F1 car can reach up to 370km/h or 229.91 mph!</h4>
+            <br/>
+                <a href="https://www.formula1.com/en/latest/article/drivers-teams-cars-circuits-and-more-everything-you-need-to-know-about.7iQfL3Rivf1comzdqV5jwc" target="_blank">
+                    <button type="button" class="btn btn-primary btn-lg">Beginner's Guide to F1</button>
+                </a>
+            </div>
+            <div class="col-md-7 about-block">
+                <img src="static/images/f1_info.jpg" class="img-fluid float-end" alt="Formula 1" width="100%" height="auto">
+            </div>
+        
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                
+                <br/>
+            </div>
+
+            <div class="row justify-content-evenly align-items-stretch">
+                <div class="col-md-7 about-block text-center">
+                    <img src="static/images/teams.jpg" class="img-fluid d-block mx-auto" alt="Constructor" width="auto" height="auto">
+                </div>
+            <!-- <div class="row justify-content-end align-items-baseline"> -->
+                <div class="col-md-5 about-block ml-auto">
+                    <h2>WHAT IS A CONSTRUCTOR?</h2> 
+                    <h4>A Constructor refers to the various teams that Formula 1 racers are associated with.  Though teams can be privately owned, it is not uncommon for an F1 team to be sponsored by company.  In order to be certified as a constructor, a perspective applicant must apply to the FIA (the governing body of F1), and pay a $200 million entry fee.   </h4>
+                    <br/>
+                    <a href="https://www.formula1.com/en/teams" target="_blank">
+                        <button type="button" class="btn btn-primary btn-lg">Learn About the Teams</button>
+                    </a>
+                </div>
+
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+            </div>
+            <div class="row">
+                <div class="col-md-5 about-block">
+                    <h2>WHAT IS A CIRCUIT?</h2>
+                    <h4>A Circuit in Formula 1 is a track where the races take place. As of August 2024, there have been 77 circuits used for different races. They are spread across 34 different countries throughout the world.</h4>
+                    <br/>
+                    <a href="https://www.formula1.com/en/racing/2024" target="_blank">
+                        <button type="button" class="btn btn-primary btn-lg">F1 2024 Schedule</button>
+                    </a>
+                </div>
+                <div class="col-md-7 about-block">
+                    <img src="static/images/circuit.jpg" class="img-fluid float-end" alt="Las Vegas Circuit" width="100%" height="auto">
+                </div>
+            </div>
+    </div>
+</body>
+
+</html>
