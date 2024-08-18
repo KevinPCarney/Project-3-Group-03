@@ -25,16 +25,16 @@ Marta Baker (martabaker): Data Cleaning, Loading, API Queries, Horizontal Bar Ch
 
 ## Libraries/Languages
 1. Python and Jupyter Notebook
-2. SQL
-3. SQLAlchemy and SQLAlchemy ORM
-4. SQLite
-5. JavaScript
-6. HTML
-7. CSS
-8. Bootstrap
-9. Plotly
-10. Leaflet
-11. 
+2. Pandas
+3. SQL
+4. SQLAlchemy and SQLAlchemy ORM
+5. SQLite
+6. JavaScript
+7. HTML
+8. CSS
+9. Bootstrap
+10. Plotly
+11. Leaflet 
 
 ## Works Cited
 Rao, R. (2020). Formula 1 World Championship (1950–2020) [Data set]. Kaggle. https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020
