@@ -58,3 +58,5 @@ Stack Overflow. (2015). How to prevent SQL injection in SQLite with Python? http
 GeeksforGeeks. (2022). Python SQLite - Create Table. https://www.geeksforgeeks.org/python-sqlite-create-table/
 
 Stack Overflow. (2019). SQLite with Python - Best practices for connection handling. https://stackoverflow.com/a/60505711
+
+Silva, C. (2023). Leaflet.ExtraMarkers. GitHub. https://github.com/coryasilva/Leaflet.ExtraMarkers
