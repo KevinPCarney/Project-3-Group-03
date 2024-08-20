@@ -1,4 +1,4 @@
-
+//Build Sunburst Chart
 function buildSunburst(data) {
   let trace = {
     "type": "sunburst",
@@ -21,12 +21,7 @@ function buildSunburst(data) {
   Plotly.newPlot("sunburst", traces, layout)
 }
 
-
-
-
-
-
-
+//API 
 function init_sunburst (){
   // get user input
   let min_year = d3.select("#min_year").property("value");
@@ -44,7 +39,6 @@ function init_sunburst (){
     // buildBar(data.bar_data);
     buildSunburst(data);
   });
-
 }
 
 // event listener for CLICK on Button

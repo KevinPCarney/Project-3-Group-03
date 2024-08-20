@@ -22,38 +22,39 @@ class SQLHelper():
         # automap Base classes
         self.init_base()
 
-
+    # define bas
     def init_base(self):
         # reflect an existing database into a new model
         self.Base = automap_base()
         # reflect the tables
         self.Base.prepare(autoload_with=self.engine)
 
-
+        #bases for query referencing 
         Circuits = self.Base.classes.circuits
         Constructors = self.Base.classes.constructors
         Drivers = self.Base.classes.drivers
         Results = self.Base.classes.results
         Races = self.Base.classes.races
 
-
     #################################################
     # Database Queries
     #################################################
 
-
     def dropdown_query(self):
-                 
+
+        # base         
         Drivers = self.Base.classes.drivers
 
-		# Create our session (link) from Python to the DB
+		# Create our session 
         session = Session(self.engine)
 
+        # SQL query - ORM 
         dropdown_query = session.query(Drivers.nationality.distinct()).order_by(Drivers.nationality.asc()).all()
 
         # close session
         session.close()
         
+        # save query to dataframe
         df = pd.DataFrame(dropdown_query, columns=["nationality"])
 
         data = df.to_dict(orient="records")
@@ -62,15 +63,15 @@ class SQLHelper():
 
 	#Drivers Nationality
     def bar_chart(self, nationality):
-            
+
+        # bases    
         Results = self.Base.classes.results        
         Drivers = self.Base.classes.drivers
 
 		# Create our session (link) from Python to the DB
         session = Session(self.engine)
 
-		# nationality
-        # nationality = f"{nationality}"
+		# SQL query - ORM
         if nationality != 'All':
             driver_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), Drivers.nationality).\
             filter(Drivers.driverId == Results.driverId).\
@@ -94,15 +95,17 @@ class SQLHelper():
         data = df.to_dict(orient="records")
         return(data)
     
-    #Drivers Wins
+    #Bubble Chart
     def bubble_chart(self, nationality):
 
+        # bases
         Results = self.Base.classes.results        
         Drivers = self.Base.classes.drivers
 
-		# Create our session (link) from Python to the DB
+		#create session
         session = Session(self.engine)
 
+        # SQL query - ORM 
         if nationality != 'All':
             bubble_query = session.query(Drivers.forename, Drivers.surname, func.count(Results.position), func.avg(Results.position), Drivers.nationality).\
             filter(Drivers.driverId == Results.driverId).\
@@ -118,6 +121,7 @@ class SQLHelper():
         # close session
         session.close()
 
+        # save query to dataframe
         df = pd.DataFrame(bubble_query, columns=["first_name", "last_name", "number_races", "avg_finish", "nationality"])
 
         data = df.to_dict(orient="records")
@@ -125,14 +129,14 @@ class SQLHelper():
 
     #MAP
     def query_map(self, country):
-        
+
+        #base
         Circuits = self.Base.classes.circuits
 
         # Create our session (link) from Python to the DB
         session = Session(self.engine)
 
-        #query
-        # map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).all()		
+        #SQL query - ORM
         if country != 'All':
             map_query = session.query(Circuits.name, Circuits.location, Circuits.country, Circuits.lat, Circuits.lng).\
             filter(Circuits.country == f"{country}").all()
@@ -151,7 +155,7 @@ class SQLHelper():
     #SUNBURST CONSTRUCTOR
     def sunburst_query(self, min_year, max_year):
 
-
+        #SQL query - RAW 
         query = f"""
             SELECT
                 c.name as label,
@@ -188,27 +192,6 @@ class SQLHelper():
         """
 
         df_sunburst = pd.read_sql(text(query), con=self.engine)
-
-
-        # Constructors = self.Base.classes.constructors
-        # Drivers = self.Base.classes.drivers
-        # Results = self.Base.classes.results
-        # Races = self.Base.classes.races
-
-        # # Create our session (link) from Python to the DB
-        # session = Session(self.engine)
-
-        # #query
-        # constructor_query = session.query(Constructors.name, Drivers.forename, Drivers.surname).\
-        #     filter(Constructors.constructorId == Results.constructorId).\
-        #     filter(Drivers.driverId == Results.driverId).\
-        #     filter(Results.raceId == Races.raceId).\
-        #     group_by(Drivers.driverId).\
-        #     order_by(Constructors.name.asc()).all()
-        
-        
-        # #close session
-        # session.close()
 
         # #save query to dataframe
         # df = pd.DataFrame(constructor_query, columns=["constructor", "first_name", "last_name"])   

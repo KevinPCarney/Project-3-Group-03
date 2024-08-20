@@ -16,6 +16,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <!-- BACKGROUND IMAGE, CHAT GBT-->
+    <style>
+        body {
+            background-image: url('static/images/light_grey_lines_background.jpg');
+            background-size: 25%;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -54,40 +65,44 @@
     <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h1>Formula 1 Drivers by Year per Constructor</h1>
-            <p>Use the interactive charts below to explore the dataset</p>
+            <h1>FORMULA 1 TEAMS & THEIR DRIVERS BY YEAR</h1>
+            <p>Use the interactive chart and filters to explore Teams and their Drivers</p>
           </div>
         </div>
         <br>
+    <div class="container">
         <div class="row">
-            <div class="col-md-6 card text-white card border-primary mb-3">
+            <!-- Year Filter -->
+            <div class="col-md-7 card text-white card border-primary mb-3">
                 <label for="min_year" class="text-secondary-emphasis">Min Year</label>
                 <input type="number" value="2010" id="min_year">
                 <label for="max_year" class="text-secondary-emphasis">Max Year</label>
                 <input type="number" value="2024" id="max_year">
-
                 <button id="filter" class="btn btn-primary">Filter!</button>
             </div>
-            <div class="col-md-6">
-                <p>
-                    Drivers change teams fairly regularly. 
-                    Use the chart below to see which drivers were on which teams for a given date range.
-                    The chart also demonstrates how long drivers were on each team and how many races they drove for the team.
-                    For example, some drivers are reserve drivers who raced for only 1 or 2 races, while other drivers signed multi-year deals and raced in every race.
-                </p>
-            </div>
         </div>
+
         <div class="row">
-            <div class="col-md-12 text-center">
+            <!-- Sunburst Chart -->
+            <div class="col-md-7 about-block">
                 <div id="sunburst"></div>
+            </div>
+            <!-- Driver Info Block -->
+            <div class="col-md-5 about-block">
+                <img src="static/images/drivers.jpg" class="img-fluid" alt="Drivers" width="100%" height="auto">
+                    <p>Drivers change teams fairly regularly. Some drivers are reserve drivers who raced for only 1 or 2 races, while other drivers signed multi-year deals and raced in every race.
+                    <br/>
+                    <br/>Use the chart to view the drivers for each team. Select the year(s) and choose a team to view their drivers and how many races they drove in.</p>
+                    <br/>
+                    <a href="https://www.formula1.com/en/drivers" target="_blank">
+                        <button type="button" class="btn btn-primary btn-lg">Meet The Drivers</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+    <script src="./static/js/sunburst.js"></script>
 
-     <br/>
-     <br/>
-
-     <script src="./static/js/sunburst.js"></script>
 </body>
 
 </html>

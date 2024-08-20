@@ -16,6 +16,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <!-- BACKGROUND IMAGE, CHAT GBT-->
+    <style>
+      body {
+          background-image: url('static/images/light_grey_lines_background.jpg');
+          background-size: 25%;
+          background-repeat: repeat;
+          background-attachment: fixed;
+          background-position: center;
+      }
+    </style>
+
 </head>
 
 <body>
@@ -47,43 +59,40 @@
         </div>
     </nav>
 
-    <!-- add spacing -->
     <br/>
 
     <!-- Dashboard -->
     <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h1>Formula 1 Driver Performance by Nationality</h1>
+            <h1>FORMULA 1 DRIVER BY NATIONALITY</h1>
             <p>Use the interactive charts below to explore the dataset</p>
           </div>
         </div>
-        <br>
+
+        <!-- Dropdown -->
+        <div class="row justify-content-center"> 
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <h6 class="m-1">Nationality:</h6>
+                    <select class="form-select" id="selNationality" onchange="optionChanged(this.value)">
+                      <option selected>All</option>
+                    </select>
+                </div>
+            </div>
+          </div>
+
+        <!-- Bubble and Bar Charts -->
         <div class="row">
-          <div class="col-md-3">
-            <div class="card text-white bg-primary mb-3">
-              <h6 class="m-1">Nationality:</h6>
-              <select class="form-select" id="selNationality" onchange="optionChanged(this.value)">
-                <option selected>All</option>
-              </select>
-            </div>
-            </div>
-        </div>
-        <div>
-          <div class="col-md-12">
+          <div class="col-md-6 about-block">
             <div id="bar"></div>
           </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6 about-block">
             <div id="bubble"></div>
           </div>
         </div>
-    </div>
-    
-      
-      <script src="./static/js/app.js"></script>
+ 
+    <script src="./static/js/app.js"></script>
 </body>
 
 </html>

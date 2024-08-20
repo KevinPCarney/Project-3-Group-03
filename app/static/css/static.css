@@ -1,27 +1,27 @@
-/* Chat GBT styling */
+/* Referenced chat gbt for help with styling */
 
-
-/*SOURCES */
 /* Header styling */
 .header {
     text-align: center; 
     padding: 20px;
 }
+
 /* Parent container styling */
 .parent-container {
     display: flex;
     justify-content: center; 
     align-items: center; 
-    height: 50vh; 
+    height: auto; 
 }
 
 /* Link container styling */
 .link-container {
     width: 80%;
+    color: white;
     padding: 10px 20px; /* Add padding to align with the header */
-    background-color: #9D948B;
-    text-align: center; 
-    border-radius: 5px; /* Rounded corners */
+    background-color: #464444;
+    text-align: left; 
+    border-radius: 7px; /* Rounded corners */
 }
 
 /* Individual link styling */
@@ -32,10 +32,10 @@
     font-size: 18px;
     padding: 10px;
     background-color: white;
-    border: 1px solid #9D948B;
+    border: 1px solid #404E4D;
     margin: 5px 0; 
     width: auto;
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 7px; /* Rounded corners */
 }
 
 /* Hover effect for links */
@@ -43,9 +43,7 @@
     background-color: #e0e0e0;
 }
 
-
-/* ABOUT US 
-/* About Us block styling */
+/* About block container styling */
 .about-block {
     text-align: left; /* Align content to the left */
     margin-bottom: 20px;
@@ -55,6 +53,7 @@
     border-radius: 5px; /* Rounded corners */
 }
 
+/* About block image styling */
 .about-block img {
     width: 100%; /* Make the image take up the full width of its container */
     height: auto;
@@ -65,9 +64,55 @@
     margin: 0;
 }
 
+/*Map*/
 #map-container {
-    height: 800px;
+    width: 100%; /* Ensure the container takes up full width */
+    height: 80vh; /* Set the height relative to the viewport height */
+    max-height: 800px; /* Optional: set a maximum height */
 }
+
 #map {
     height: 100%;
 }
+
+/*Background*/
+.body {
+    background-image: url('static/images/light_grey_lines_background.jpg');
+    background-size: 25%;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* CSS for cluster markers */
+.marker-cluster {
+    background-color: #404E4D;
+    border-radius: 10%;
+    color: white;
+    text-align: center;
+    font-size: 100px;
+    line-height: 24px;
+    width: 40px;
+    height: 40px;
+  }
+  
+.marker-cluster div {
+line-height: 24px;
+}
+
+/* icons , chat gbt*/
+.svg-spinners--8-dots-rotate {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg%3E%3Ccircle cx='3' cy='12' r='2' fill='%23000'/%3E%3Ccircle cx='21' cy='12' r='2' fill='%23000'/%3E%3Ccircle cx='12' cy='21' r='2' fill='%23000'/%3E%3Ccircle cx='12' cy='3' r='2' fill='%23000'/%3E%3Ccircle cx='5.64' cy='5.64' r='2' fill='%23000'/%3E%3Ccircle cx='18.36' cy='18.36' r='2' fill='%23000'/%3E%3Ccircle cx='5.64' cy='18.36' r='2' fill='%23000'/%3E%3Ccircle cx='18.36' cy='5.64' r='2' fill='%23000'/%3E%3CanimateTransform attributeName='transform' dur='1.5s' repeatCount='indefinite' type='rotate' values='0 12 12;360 12 12'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  
